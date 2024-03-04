@@ -168,6 +168,10 @@
     "name": "Сложение",
     "description": "2+2",
     "difficulty": "3",
-    "themes": { 1, 2, 3, 4 },
+
+# Задание темы
+    "task_theme_id": "124",
+    "task_id": "1",
+    "theme_id": "2"
  
    
