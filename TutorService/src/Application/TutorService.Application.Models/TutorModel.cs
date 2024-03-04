@@ -2,10 +2,10 @@ namespace DefaultNamespace;
 
 public class TutorModel: UserModel
 {
-        private String _tutorId;
-        private String _userId;
-        private String[] _subjects;
-        private String _dateStartTeaching;
-        private String _place;
+        private string _tutorId;
+        private string _userId;
+        private string[] _subjects;
+        private string _dateStartTeaching;
+        private string _place;
 
 }
