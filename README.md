@@ -6,7 +6,7 @@
     "avatar": "url",
     "login": "vanyaklass2008",
     "password_hashed": "asflhkj;lJKKKSF9283"
-    "role": "pupil",
+    "role": "student",
 
 ## Методы
 ### Создание пользователя - POST api/v1/users/createuser
@@ -17,7 +17,7 @@
         "avatar": "url",
         "login": "vanyaklass2008",
         "password_hashed": "asflhkj;lJKKKSF9283"
-        "role": "pupil",
+        "role": "student",
     }
     response - {
         "body": true,
@@ -34,7 +34,7 @@
         "mail": "asf@asf.ru",
         "avatar": "url",
         "login": "vanyaklass2008",
-        "role": "pupil",
+        "role": "student",
     }
 ### Изменение пользователя - UPDATE api/v1/users/updateuser?id
     request - {
@@ -55,12 +55,12 @@
     }
 
 # Сущность ученика: 
-    "pupil_id": "123",
+    "student_id": "123",
     "user_id": "124",
     "grade": "8",
     "full_name_parent": "Maria Ivanova",
     "contact_parent": "+7 --- --- -- --",
-### Создание ученика - POST api/v1/pupils/createpupil
+### Создание ученика - POST api/v1/students/createstudent
     request - {
         "user_id": "124",
         "grade": "8",
@@ -72,9 +72,9 @@
         "errors": ["string"]
     }
 
-### Получение ученика - GET api/v1/pupils/getpupil?1
+### Получение ученика - GET api/v1/students/getstudent?1
     request - {
-        "pupil_id": "124"
+        "student_id": "124"
     }
     response - {
         "user_id": "124",
@@ -82,18 +82,18 @@
         "full_name_parent": "Maria Ivanova",
         "contact_parent": "+7 --- --- -- --",
     }
-### Изменение ученика - UPDATE api/v1/pupils/updatepupil?1
+### Изменение ученика - UPDATE api/v1/students/updatestudent?1
     request - {
-        "pupil_id": "124",
+        "student_id": "124",
         "request_body": []
     }
     response - {
         "body": true,
         "errors": ["string"]
     }
-### Удаление ученика - DELETE api/v1/pupils/deletepupil?id
+### Удаление ученика - DELETE api/v1/students/deletestudent?id
     request - {
-        "pupil_id": "124",
+        "student_id": "124",
     }
     response - {
         "body": true,
@@ -104,7 +104,7 @@
 # Сущность репетитора:
     "tutor_id": "123",
     "user_id": "125",
-    "subjects": "linear algebra, geometry",
+    "subjects": {"linear algebra", "geometry"},
     "date_start_teaching": "20.02.2002",
     "place": "SPB52"
 
@@ -126,7 +126,7 @@
     }
     response - {
         "user_id": "124",
-        "pupil_id": "124"
+        "student_id": "124"
         "subjects": "linear algebra, geometry",
         "date_start_teaching": "20.02.2002",
         "place": "SPB52",
@@ -156,18 +156,18 @@
     "difficulty": "3"
 
 # Ученик на теме:
-    "pupil_theme_id": "123",
-    "pupil_id": "124",
+    "student_theme_id": "123",
+    "student_id": "124",
     "tutor_id": "124",
     "theme_id": "12",
-    "completed_tasks": "1, 2, 3, 4",
-    "suggested_tasks: "1, 2, 3, 4, 5"
+    "completed_tasks": { 1, 2, 3, 4 },
+    "suggested_tasks: { 1, 2, 3, 4, 5 }
 
 # Задание
     "task_id": "124",
     "name": "Сложение",
     "description": "2+2",
     "difficulty": "3",
-    "themes": "1, 2, 3, 4",
+    "themes": { 1, 2, 3, 4 },
  
    

@@ -1,4 +1,4 @@
-namespace DefaultNamespace;
+namespace TutorService.Application.Models;
 
 public class UserModel
 {
