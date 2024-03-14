@@ -2,11 +2,11 @@
 
 using Itmo.Dev.Platform.Common.Extensions;
 using Itmo.Dev.Platform.Logging.Extensions;
+using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using TutorService.Application.Extensions;
 using TutorService.Infrastructure.Persistence.Extensions;
 using TutorService.Presentation.Http.Extensions;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +16,7 @@ builder.Services.AddOptions<JsonSerializerSettings>();
 builder.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<JsonSerializerSettings>>().Value);
 
 builder.Services.AddApplication();
-builder.Services.AddInfrastructurePersistence();
+builder.Services.AddInfrastructurePersistence(builder.Configuration);
 builder.Services
     .AddControllers()
     .AddNewtonsoftJson()

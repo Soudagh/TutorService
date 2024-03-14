@@ -4,11 +4,11 @@ namespace TutorService.Application.Contracts;
 
 public interface ITaskThemeService
 {
-    TaskThemeModel Create(int taskId, int themeId);
+    TaskThemeModel CreateTaskTheme(int taskId, int themeId);
 
-    TaskThemeModel Get(int taskThemeId, int taskId, int themeId);
+    TaskThemeModel GetTaskTheme(int taskThemeId, int taskId, int themeId);
 
-    bool Update(TaskThemeModel newTaskTheme);
+    bool UpdateTaskTheme(TaskThemeModel newTaskTheme);
 
-    bool Delete(int taskThemeId);
+    bool DeleteTaskTheme(int taskThemeId);
 }

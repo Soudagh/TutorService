@@ -1,6 +1,6 @@
-namespace TutorService.Application.Extensions;
-
 using Microsoft.Extensions.DependencyInjection;
+
+namespace TutorService.Application.Extensions;
 
 public static class ServiceCollectionExtensions
 {

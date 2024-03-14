@@ -4,11 +4,11 @@ namespace TutorService.Application.Contracts;
 
 public interface IStudentService
 {
-    StudentModel Create(int studentUserId, int tutorUserId, int themeId);
+    StudentModel CreateStudent(int studentUserId, int tutorUserId, int themeId);
 
-    StudentModel Get(int studentId);
+    StudentModel GetStudent(int studentId);
 
-    bool Update(StudentModel newStudent);
+    bool UpdateStudent(StudentModel newStudent);
 
-    bool Delete(int studentId);
+    bool DeleteStudent(int studentId);
 }

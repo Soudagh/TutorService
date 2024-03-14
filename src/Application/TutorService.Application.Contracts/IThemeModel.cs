@@ -4,11 +4,11 @@ namespace TutorService.Application.Contracts;
 
 public interface IThemeModel
 {
-    ThemeModel Create(string title, int difficulty);
+    ThemeModel CreateTheme(string title, int difficulty);
 
-    ThemeModel Get(int themeId);
+    ThemeModel GetTheme(int themeId);
 
-    bool Update(ThemeModel newTheme);
+    bool UpdateTheme(ThemeModel newTheme);
 
-    bool Delete(int themeId);
+    bool DeleteTheme(int themeId);
 }

@@ -2,7 +2,7 @@ namespace TutorService.Application.Models;
 
 public class ExerciseModel
 {
-    public int TaskId { get; set; }
+    public int ExerciseId { get; set; }
 
     public string Name { get; set; }
 
@@ -10,12 +10,11 @@ public class ExerciseModel
 
     public int Difficulty { get; set; }
 
-    public ExerciseModel(int taskId, string name, string description, int difficulty)
+    public ExerciseModel(int exerciseId, string name, string description, int difficulty)
     {
-        TaskId = taskId;
+        ExerciseId = exerciseId;
         Name = name;
         Description = description;
         Difficulty = difficulty;
     }
-    
 }

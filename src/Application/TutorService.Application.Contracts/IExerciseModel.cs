@@ -4,11 +4,11 @@ namespace TutorService.Application.Contracts;
 
 public interface IExerciseModel
 {
-    ExerciseModel Create(string name, string description, int difficulty);
+    ExerciseModel CreateExercise(string name, string description, int difficulty);
 
-    ExerciseModel Get(int exerciseId);
+    ExerciseModel GetExercise(int exerciseId);
 
-    bool Update(ExerciseModel newExercise);
+    bool UpdateExercise(ExerciseModel newExercise);
 
-    bool Delete(int exerciseId);
+    bool DeleteExercise(int exerciseId);
 }

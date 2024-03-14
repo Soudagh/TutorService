@@ -18,7 +18,8 @@ public class UserModel
 
     public RoleEnum Role { get; set; }
 
-    public UserModel(Guid userId,
+    public UserModel(
+        Guid userId,
         string fullName,
         string phone,
         string mail,

@@ -4,14 +4,20 @@ namespace TutorService.Application.Contracts;
 
 public interface IUserService
 {
-    UserModel Register(string fullName, string phone, string mail, string avatar, string login, string hashedPassword,
+    UserModel RegisterUser(
+        string fullName,
+        string phone,
+        string mail,
+        string avatar,
+        string login,
+        string hashedPassword,
         RoleEnum role);
 
-    UserModel Login(string login, string password);
-    
-    UserModel Get(int userId);
+    UserModel LoginUser(string login, string password);
 
-    bool Update(UserModel newUser);
+    UserModel GetUser(int userId);
 
-    bool Delete(int userId);
+    bool UpdateUser(UserModel newUser);
+
+    bool DeleteUser(int userId);
 }

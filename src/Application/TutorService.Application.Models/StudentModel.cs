@@ -1,3 +1,5 @@
+using System.Collections.ObjectModel;
+
 namespace TutorService.Application.Models;
 
 public class StudentModel
@@ -10,12 +12,17 @@ public class StudentModel
 
     public int ThemeId { get; set; }
 
-    public List<ExerciseModel> CompletedTasks { get; set; }
+    public Collection<ExerciseModel> CompletedTasks { get; }
 
-    public List<ExerciseModel> SuggestedTasks { get; set; }
+    public Collection<ExerciseModel> SuggestedTasks { get; }
 
-    public StudentModel(int studentId, int studentUserId, int tutorId, int themeId,
-        List<ExerciseModel> completedTasks, List<ExerciseModel> suggestedTasks)
+    public StudentModel(
+        int studentId,
+        int studentUserId,
+        int tutorId,
+        int themeId,
+        Collection<ExerciseModel> completedTasks,
+        Collection<ExerciseModel> suggestedTasks)
     {
         StudentId = studentId;
         StudentUserId = studentUserId;

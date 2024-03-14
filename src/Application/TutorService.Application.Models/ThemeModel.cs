@@ -1,5 +1,3 @@
-using System.Reflection;
-
 namespace TutorService.Application.Models;
 
 public class ThemeModel
