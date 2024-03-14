@@ -4,14 +4,16 @@ namespace TutorService.Application.Models;
 
 public class ThemeModel
 {
-    private string _themeID;
-    private string _title;
-    private string _difficulty;
+    public int ThemeId { get; set; }
 
-    public ThemeModel(string theme, string title, string difficulty)
+    public string Title { get; set; }
+
+    public int Difficulty { get; set; }
+
+    public ThemeModel(int themeId, string title, int difficulty)
     {
-        _themeID = theme;
-        _title = title;
-        _difficulty = difficulty;
+        ThemeId = themeId;
+        Title = title;
+        Difficulty = difficulty;
     }
 }

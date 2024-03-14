@@ -2,14 +2,16 @@ namespace TutorService.Application.Models;
 
 public class TaskThemeModel
 {
-    private string _taskThemeId;
-    private string _taskId;
-    private string _themeId;
+    public int TaskThemeId { get; set; }
 
-    public TaskThemeModel(string taskThemeId, string taskId, string themeId)
+    public int TaskId { get; set; }
+
+    public int ThemeId { get; set; }
+
+    public TaskThemeModel(int taskThemeId, int taskId, int themeId)
     {
-        _taskThemeId = taskThemeId;
-        _taskId = taskId;
-        _themeId = themeId;
+        TaskThemeId = taskThemeId;
+        TaskId = taskId;
+        ThemeId = themeId;
     }
 }

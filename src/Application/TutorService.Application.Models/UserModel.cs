@@ -2,16 +2,23 @@ namespace TutorService.Application.Models;
 
 public class UserModel
 {
-    private string _userId;
-    private string _fullName;
-    private string _phone;
-    private string _mail;
-    private string _avatar;
-    private string _login;
-    private string _passwordHashed;
-    private RoleEnum _role;
+    public Guid UserId { get; set; }
 
-    public UserModel(string userId,
+    public string FullName { get; set; }
+
+    public string Phone { get; set; }
+
+    public string Mail { get; set; }
+
+    public string Avatar { get; set; }
+
+    public string Login { get; set; }
+
+    public string PasswordHashed { get; set; }
+
+    public RoleEnum Role { get; set; }
+
+    public UserModel(Guid userId,
         string fullName,
         string phone,
         string mail,
@@ -20,13 +27,13 @@ public class UserModel
         string passwordHashed,
         RoleEnum role)
     {
-        _userId = userId;
-        _fullName = fullName;
-        _phone = phone;
-        _mail = mail;
-        _avatar = avatar;
-        _login = login;
-        _passwordHashed = passwordHashed;
-        _role = role;
+        UserId = userId;
+        FullName = fullName;
+        Phone = phone;
+        Mail = mail;
+        Avatar = avatar;
+        Login = login;
+        PasswordHashed = passwordHashed;
+        Role = role;
     }
 }
