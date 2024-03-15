@@ -359,3 +359,5 @@ FodyWeavers.xsd
 /.vs
 
 .idea/
+
+.env
