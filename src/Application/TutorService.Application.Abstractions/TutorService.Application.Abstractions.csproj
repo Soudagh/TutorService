@@ -1,14 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
     
     <ItemGroup>
-        <ProjectReference Include="..\TutorService.Application.Models\TutorService.Application.Models.csproj"/>
+        <ProjectReference Include="..\TutorService.Application.Models\TutorService.Application.Models.csproj" />
         <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
         <PackageReference Include="Itmo.Dev.Platform.Postgres" />
         <PackageReference Include="Itmo.Dev.Platform.Common" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="SourceKit.Generators.Builder"/>
+        <PackageReference Include="SourceKit.Generators.Builder" />
     </ItemGroup>
 
 </Project>
