@@ -37,7 +37,7 @@ dotnet_diagnostic.ide0011.severity = warning
 csharp_prefer_braces = when_multiline:warning
 
 # IDE0016
-dotnet_diagnostic.ide0016.severity = warningа во
+dotnet_diagnostic.ide0016.severity = warning
 csharp_style_throw_expression = true:warning
 
 # IDE0017

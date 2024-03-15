@@ -14,7 +14,6 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddInfrastructurePersistence(this IServiceCollection collection, IConfiguration configuration)
     {
-        collection.AddPlatformPostgres(builder => builder.BindConfiguration("Infrastructure:Persistence:Postgres"));
         collection.AddSingleton<IDataSourcePlugin, MappingPlugin>();
 
         collection.AddPlatformMigrations(typeof(IAssemblyMarker).Assembly);
@@ -24,7 +23,7 @@ public static class ServiceCollectionExtensions
         collection.AddScoped<IPersistenceContext, PersistenceContext>();
 
         collection.AddDbContext<ApplicationDbContext>(options =>
-            options.UseNpgsql(configuration.GetSection("Infrastructure:Persistence:Postgres:ConnectionString").Value));
+            options.UseNpgsql("Host=ep-raspy-surf-a2g3tsj7.eu-central-1.aws.neon.tech;Database=tutor_service;Port=5432;User=tutor_service_owner;Password=bkV8TOJM5lKf"));
 
         return collection;
     }
