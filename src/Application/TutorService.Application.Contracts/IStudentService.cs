@@ -1,14 +1,15 @@
-using TutorService.Application.Models;
+using TutorService.Application.Models.Requests;
+using TutorService.Application.Models.Responses;
 
 namespace TutorService.Application.Contracts;
 
 public interface IStudentService
 {
-    StudentModel CreateStudent(int studentUserId, int tutorUserId, int themeId);
+    Task<bool> CreateStudentAsync(StudentCreateRequest request);
 
-    StudentModel GetStudent(int studentId);
+    Task<StudentResponse> GetStudentAsync(string studentId);
 
-    bool UpdateStudent(StudentModel newStudent);
+    Task<bool> UpdateStudentAsync(string studentId, StudentUpdateRequest request);
 
-    bool DeleteStudent(int studentId);
+    Task<bool> DeleteStudentAsync(string studentId);
 }
