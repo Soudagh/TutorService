@@ -1,4 +1,3 @@
-using TutorService.Application.Models;
 using TutorService.Application.Models.Requests;
 using TutorService.Application.Models.Responses;
 
@@ -10,7 +9,7 @@ public interface ITaskThemeService
 
     Task<TaskThemeResponse> GetTaskThemeAsync(string id);
 
-    Task <bool> UpdateTaskThemeAsync(string id, TaskThemeUpdateRequest request);
+    Task<bool> UpdateTaskThemeAsync(string id, TaskThemeUpdateRequest request);
 
-    Task <bool> DeleteTaskThemeAsync(string id);
+    Task<bool> DeleteTaskThemeAsync(string id);
 }

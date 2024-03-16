@@ -18,6 +18,8 @@ public static class ServiceCollectionExtensions
         collection.AddScoped<IPersistenceContext, PersistenceContext>();
         collection.AddScoped<IUserRepository, UserRepository>();
         collection.AddScoped<ITaskRepository, TaskRepository>();
+        collection.AddScoped<IThemeRepository, ThemeRepository>();
+        collection.AddScoped<ITaskThemeRepository, TaskThemeRepository>();
 
         return collection;
     }
@@ -25,7 +27,7 @@ public static class ServiceCollectionExtensions
     private static IServiceCollection AddContext(this IServiceCollection collection, IConfiguration configuration)
     {
         collection.AddDbContext<ApplicationDbContext>(options =>
-                options.UseNpgsql(configuration.GetSection("Infrastructure:Persistence:Postgres:ConnectionString").Value));
+                options.UseNpgsql("Host=localhost;Port=5433;Database=Tutor_Service;Username=postgres;Password=rfghjv2012"));
 
         return collection;
     }

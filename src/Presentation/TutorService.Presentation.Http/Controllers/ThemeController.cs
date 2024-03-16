@@ -37,12 +37,12 @@ public class ThemeController : ControllerBase
         }
     }
 
-    [HttpGet("gettheme")]
-    public async Task<IActionResult> GetTheme([FromQuery] string id)
+    [HttpGet("gettheme/{themeId}")]
+    public async Task<IActionResult> GetTheme([FromQuery] string themeId)
         {
             try
             {
-                ThemeResponse theme = await _themeService.GetThemeAsync(id);
+                ThemeResponse theme = await _themeService.GetThemeAsync(themeId);
                 if (theme != null)
                 {
                     return Ok(theme);
@@ -58,12 +58,12 @@ public class ThemeController : ControllerBase
             }
         }
 
-    [HttpPut("updatetheme")]
-    public async Task<IActionResult> UpdateTheme(string id, [FromBody] ThemeUpdateRequest request)
+    [HttpPut("updatetheme/{themeId}")]
+    public async Task<IActionResult> UpdateTheme(string themeId, [FromBody] ThemeUpdateRequest request)
         {
             try
             {
-                bool success = await _themeService.UpdateThemeAsync(id, request);
+                bool success = await _themeService.UpdateThemeAsync(themeId, request);
                 if (success)
                 {
                     return Ok(new { body = true });
@@ -79,12 +79,12 @@ public class ThemeController : ControllerBase
             }
         }
 
-    [HttpDelete("deletetheme")]
-    public async Task<IActionResult> DeleteTheme(string id)
+    [HttpDelete("deletetheme/{themeId}")]
+    public async Task<IActionResult> DeleteTheme(string themeId)
         {
             try
             {
-                bool success = await _themeService.DeleteThemeAsync(id);
+                bool success = await _themeService.DeleteThemeAsync(themeId);
                 if (success)
                 {
                     return Ok(new { body = true });

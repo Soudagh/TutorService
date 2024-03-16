@@ -37,66 +37,66 @@ public class TaskController : ControllerBase
         }
     }
 
-    [HttpGet("gettask")]
-    public async Task<IActionResult> GetTask([FromQuery] string id)
+    [HttpGet("gettask/{taskId}")]
+    public async Task<IActionResult> GetTask(string taskId)
     {
         try
         {
-            TaskResponse task = await _taskService.GetTaskAsync(id);
+            TaskResponse task = await _taskService.GetTaskAsync(taskId);
             if (task != null)
             {
                 return Ok(task);
             }
             else
             {
-                return NotFound(new { errors = new List<string>() { "Task not found." } });
+                return NotFound(new { errors = new List<string> { "Task not found." } });
             }
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { errors = new List<string>() { ex.Message } });
+            return StatusCode(500, new { errors = new List<string> { ex.Message } });
         }
     }
 
-    [HttpPut("updatetask")]
-    public async Task<IActionResult> UpdateTask(string id, [FromBody] TaskUpdateRequest request)
+    [HttpPut("updatetask/{taskId}")]
+    public async Task<IActionResult> UpdateTask(string taskId, [FromBody] TaskUpdateRequest request)
     {
         try
         {
-            bool success = await _taskService.UpdateTaskAsync(id, request);
+            bool success = await _taskService.UpdateTaskAsync(taskId, request);
             if (success)
             {
                 return Ok(new { body = true });
             }
             else
             {
-                return BadRequest(new { errors = new List<string>() { "Failed to update task." } });
+                return BadRequest(new { errors = new List<string> { "Failed to update task." } });
             }
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { errors = new List<string>() { ex.Message } });
+            return StatusCode(500, new { errors = new List<string> { ex.Message } });
         }
     }
 
-    [HttpDelete("deletetask")]
-    public async Task<IActionResult> DeleteTask(string id)
+    [HttpDelete("deletetask/{taskId}")]
+    public async Task<IActionResult> DeleteTask(string taskId)
     {
         try
         {
-            bool success = await _taskService.DeleteTaskAsync(id);
+            bool success = await _taskService.DeleteTaskAsync(taskId);
             if (success)
             {
                 return Ok(new { body = true });
             }
             else
             {
-                return BadRequest(new { errors = new List<string>() { "Failed to delete task." } });
+                return BadRequest(new { errors = new List<string> { "Failed to delete task." } });
             }
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { errors = new List<string>() { ex.Message } });
+            return StatusCode(500, new { errors = new List<string> { ex.Message } });
         }
     }
 }

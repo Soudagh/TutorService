@@ -6,14 +6,15 @@ using TutorService.Infrastructure.Persistence.Contexts;
 
 namespace TutorService.Infrastructure.Persistence.Repositories;
 
-public class TaskThemeRepository: ITaskThemeRepository
-{   
+public class TaskThemeRepository : ITaskThemeRepository
+{
     private readonly ApplicationDbContext _context;
-    
+
     public TaskThemeRepository(ApplicationDbContext context)
     {
         _context = context;
     }
+
     public async Task<bool> CreateTaskTheme(TaskThemeCreateRequest request)
     {
         try
@@ -21,13 +22,12 @@ public class TaskThemeRepository: ITaskThemeRepository
             var newTaskTheme = new TaskThemeModel(
                 taskThemeId: 0,
                 taskId: request.TaskId,
-                themeId: request.ThemeId
-            );
+                themeId: request.ThemeId);
             _context.TaskThemes.Add(newTaskTheme);
             await _context.SaveChangesAsync();
             return true;
         }
-        catch(Exception)
+        catch (Exception)
         {
             return false;
         }
@@ -41,7 +41,10 @@ public class TaskThemeRepository: ITaskThemeRepository
             if (taskTheme == null)
                 return null!;
 
-            return new TaskThemeResponse(taskTheme.TaskThemeId.ToString(), taskTheme.TaskId.ToString(),taskTheme.ThemeId.ToString());
+            return new TaskThemeResponse(
+                taskTheme.TaskThemeId.ToString(),
+                taskTheme.TaskId.ToString(),
+                taskTheme.ThemeId.ToString());
         }
         catch (Exception)
         {
@@ -59,7 +62,6 @@ public class TaskThemeRepository: ITaskThemeRepository
 
             taskTheme.TaskId = request.TaskId;
             taskTheme.ThemeId = request.ThemeId;
-            
 
             await _context.SaveChangesAsync();
             return true;
@@ -87,5 +89,4 @@ public class TaskThemeRepository: ITaskThemeRepository
             return false;
         }
     }
-    
 }

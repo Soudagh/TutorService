@@ -36,7 +36,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("getuser/{userId}")]
-    public async Task<IActionResult> GetUserById([FromQuery] string userId)
+    public async Task<IActionResult> GetUserById(string userId)
     {
         try
         {

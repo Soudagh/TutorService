@@ -1,4 +1,3 @@
-using TutorService.Application.Models;
 using TutorService.Application.Models.Requests;
 using TutorService.Application.Models.Responses;
 

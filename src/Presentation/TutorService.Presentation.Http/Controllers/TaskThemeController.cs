@@ -7,7 +7,7 @@ namespace TutorService.Presentation.Http.Controllers;
 
 [ApiController]
 [Route("api/v1/tasksTheme")]
-public class TaskThemeController:ControllerBase
+public class TaskThemeController : ControllerBase
 {
     private readonly ITaskThemeService _taskThemeService;
 
@@ -15,7 +15,7 @@ public class TaskThemeController:ControllerBase
     {
         _taskThemeService = taskThemeService;
     }
-    
+
     [HttpPost("createtaskTheme")]
     public async Task<IActionResult> CreateTaskTheme(TaskThemeCreateRequest request)
     {
@@ -36,13 +36,13 @@ public class TaskThemeController:ControllerBase
             return StatusCode(500, new { errors = new List<string>() { ex.Message } });
         }
     }
-    
-    [HttpGet("gettaskTheme")]
-    public async Task<IActionResult> GetTaskTheme([FromQuery] string id)
+
+    [HttpGet("gettaskTheme/{taskThemeId}")]
+    public async Task<IActionResult> GetTaskTheme(string taskThemeId)
     {
         try
         {
-            TaskThemeResponse task = await _taskThemeService.GetTaskThemeAsync(id);
+            TaskThemeResponse task = await _taskThemeService.GetTaskThemeAsync(taskThemeId);
             if (task != null)
             {
                 return Ok(task);
@@ -57,13 +57,13 @@ public class TaskThemeController:ControllerBase
             return StatusCode(500, new { errors = new List<string>() { ex.Message } });
         }
     }
-    
-    [HttpPut("updatetaskTheme")]
-    public async Task<IActionResult> UpdateTask(string id, [FromBody] TaskThemeUpdateRequest request)
+
+    [HttpPut("updatetaskTheme/{taskThemeId}")]
+    public async Task<IActionResult> UpdateTask(string taskThemeId, [FromBody] TaskThemeUpdateRequest request)
     {
         try
         {
-            bool success = await _taskThemeService.UpdateTaskThemeAsync(id, request);
+            bool success = await _taskThemeService.UpdateTaskThemeAsync(taskThemeId, request);
             if (success)
             {
                 return Ok(new { body = true });
@@ -78,13 +78,13 @@ public class TaskThemeController:ControllerBase
             return StatusCode(500, new { errors = new List<string>() { ex.Message } });
         }
     }
-    
-    [HttpDelete("deletetaskTheme")]
-    public async Task<IActionResult> DeleteTask(string id)
+
+    [HttpDelete("deletetaskTheme/{taskThemeId}")]
+    public async Task<IActionResult> DeleteTask(string taskThemeId)
     {
         try
         {
-            bool success = await _taskThemeService.DeleteTaskThemeAsync(id);
+            bool success = await _taskThemeService.DeleteTaskThemeAsync(taskThemeId);
             if (success)
             {
                 return Ok(new { body = true });
@@ -99,5 +99,4 @@ public class TaskThemeController:ControllerBase
             return StatusCode(500, new { errors = new List<string>() { ex.Message } });
         }
     }
-    
 }

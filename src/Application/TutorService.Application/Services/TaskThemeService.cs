@@ -1,13 +1,11 @@
-using System.Runtime.Serialization;
 using TutorService.Application.Abstractions.Persistence.Repositories;
 using TutorService.Application.Contracts;
-using TutorService.Application.Models;
 using TutorService.Application.Models.Requests;
 using TutorService.Application.Models.Responses;
 
 namespace TutorService.Application.Services;
 
-public class TaskThemeService:ITaskThemeService
+public class TaskThemeService : ITaskThemeService
 {
     private readonly ITaskThemeRepository _taskThemeRepository;
 
@@ -24,7 +22,7 @@ public class TaskThemeService:ITaskThemeService
     public async Task<TaskThemeResponse> GetTaskThemeAsync(string id)
     {
         TaskThemeResponse taskTheme = await _taskThemeRepository.GetTaskTheme(id);
-        return new TaskThemeResponse(taskTheme.TaskThemeId,taskTheme.TaskId,taskTheme.ThemeId);
+        return new TaskThemeResponse(taskTheme.TaskThemeId, taskTheme.TaskId, taskTheme.ThemeId);
     }
 
     public async Task<bool> UpdateTaskThemeAsync(string id, TaskThemeUpdateRequest request)

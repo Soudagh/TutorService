@@ -6,7 +6,7 @@ using TutorService.Infrastructure.Persistence.Contexts;
 
 namespace TutorService.Infrastructure.Persistence.Repositories;
 
-public class ThemeRepository
+public class ThemeRepository : IThemeRepository
 {
      private readonly ApplicationDbContext _context;
 
@@ -15,7 +15,7 @@ public class ThemeRepository
         _context = context;
     }
 
-     public async Task<bool> CreateTask(ThemeCreateRequest request)
+     public async Task<bool> CreateTheme(ThemeCreateRequest request)
     {
         try
         {

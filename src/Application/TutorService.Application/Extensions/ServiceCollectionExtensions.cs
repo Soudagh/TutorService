@@ -10,6 +10,8 @@ public static class ServiceCollectionExtensions
     {
         collection.AddScoped<ITaskService, TaskService>();
         collection.AddScoped<IUserService, UserService>();
+        collection.AddScoped<IThemeService, ThemeService>();
+        collection.AddScoped<ITaskThemeService, TaskThemeService>();
 
         return collection;
     }

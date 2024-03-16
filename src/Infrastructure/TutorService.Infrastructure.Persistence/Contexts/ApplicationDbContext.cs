@@ -5,20 +5,11 @@ using TutorService.Application.Models;
 
 namespace TutorService.Infrastructure.Persistence.Contexts;
 
-public class ApplicationDbContext : DbContext
+public sealed class ApplicationDbContext : DbContext
 {
     public ApplicationDbContext() { }
 
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-    {
-        Database.EnsureCreated();
-    }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder
-            .EnableSensitiveDataLogging();
-    }
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
     public required DbSet<UserModel> Users { get; set; }
 
