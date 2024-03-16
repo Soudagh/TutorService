@@ -1,14 +1,16 @@
 using TutorService.Application.Models;
+using TutorService.Application.Models.Requests;
+using TutorService.Application.Models.Responses;
 
 namespace TutorService.Application.Contracts;
 
 public interface ITaskThemeService
 {
-    TaskThemeModel CreateTaskTheme(int taskId, int themeId);
+    Task<bool> CreateTaskThemeAsync(TaskThemeCreateRequest request);
 
-    TaskThemeModel GetTaskTheme(int taskThemeId, int taskId, int themeId);
+    Task<TaskThemeResponse> GetTaskThemeAsync(string id);
 
-    bool UpdateTaskTheme(TaskThemeModel newTaskTheme);
+    Task <bool> UpdateTaskThemeAsync(string id, TaskThemeUpdateRequest request);
 
-    bool DeleteTaskTheme(int taskThemeId);
+    Task <bool> DeleteTaskThemeAsync(string id);
 }
