@@ -19,8 +19,8 @@ public class TaskRepository : ITaskRepository
     {
         try
         {
-            var newTask = new ExerciseModel(
-                exerciseId: 0,
+            var newTask = new TaskModel(
+                taskId: 0,
                 name: request.Name,
                 description: request.Description,
                 difficulty: Convert.ToInt32(request.Difficulty));
@@ -39,11 +39,11 @@ public class TaskRepository : ITaskRepository
     {
         try
         {
-            ExerciseModel? task = await _context.Exercises.FindAsync(id);
+            TaskModel? task = await _context.Exercises.FindAsync(id);
             if (task == null)
                 return null!;
 
-            return new TaskResponse(task.ExerciseId.ToString(), task.Name, task.Description, task.Difficulty.ToString());
+            return new TaskResponse(task.TaskId.ToString(), task.Name, task.Description, task.Difficulty.ToString());
         }
         catch (Exception)
         {
@@ -55,7 +55,7 @@ public class TaskRepository : ITaskRepository
     {
         try
         {
-            ExerciseModel? task = await _context.Exercises.FindAsync(id);
+            TaskModel? task = await _context.Exercises.FindAsync(id);
             if (task == null)
                 return false;
 
@@ -76,7 +76,7 @@ public class TaskRepository : ITaskRepository
     {
         try
         {
-            ExerciseModel? task = await _context.Exercises.FindAsync(id);
+            TaskModel? task = await _context.Exercises.FindAsync(id);
             if (task == null)
                 return false;
 

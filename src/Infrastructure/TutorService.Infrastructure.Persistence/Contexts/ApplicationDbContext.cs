@@ -13,7 +13,7 @@ public class ApplicationDbContext : DbContext
 
     public required DbSet<UserModel> Users { get; set; }
 
-    public required DbSet<ExerciseModel> Exercises { get; set; }
+    public required DbSet<TaskModel> Exercises { get; set; }
 
     public required DbSet<StudentModel> Students { get; set; }
 

@@ -1,8 +1,8 @@
 namespace TutorService.Application.Models;
 
-public class ExerciseModel
+public class TaskModel
 {
-    public int ExerciseId { get; set; }
+    public int TaskId { get; set; }
 
     public string Name { get; set; }
 
@@ -10,9 +10,9 @@ public class ExerciseModel
 
     public int Difficulty { get; set; }
 
-    public ExerciseModel(int exerciseId, string name, string description, int difficulty)
+    public TaskModel(int taskId, string name, string description, int difficulty)
     {
-        ExerciseId = exerciseId;
+        TaskId = taskId;
         Name = name;
         Description = description;
         Difficulty = difficulty;

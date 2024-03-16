@@ -12,17 +12,17 @@ public class StudentModel
 
     public int ThemeId { get; set; }
 
-    public Collection<ExerciseModel> CompletedTasks { get; }
+    public Collection<TaskModel> CompletedTasks { get; }
 
-    public Collection<ExerciseModel> SuggestedTasks { get; }
+    public Collection<TaskModel> SuggestedTasks { get; }
 
     public StudentModel(
         int studentId,
         int studentUserId,
         int tutorId,
         int themeId,
-        Collection<ExerciseModel> completedTasks,
-        Collection<ExerciseModel> suggestedTasks)
+        Collection<TaskModel> completedTasks,
+        Collection<TaskModel> suggestedTasks)
     {
         StudentId = studentId;
         StudentUserId = studentUserId;

@@ -1,23 +1,15 @@
-using TutorService.Application.Models;
+using TutorService.Application.Models.Requests;
+using TutorService.Application.Models.Responses;
 
 namespace TutorService.Application.Contracts;
 
 public interface IUserService
 {
-    UserModel RegisterUser(
-        string fullName,
-        string phone,
-        string mail,
-        string avatar,
-        string login,
-        string hashedPassword,
-        RoleEnum role);
+    Task<bool> CreateUserAsync(UserCreateRequest request);
 
-    UserModel LoginUser(string login, string password);
+    Task<UserResponse> GetUserAsync(string userId);
 
-    UserModel GetUser(int userId);
+    Task<bool> UpdateUserAsync(string userId, UserUpdateRequest request);
 
-    bool UpdateUser(UserModel newUser);
-
-    bool DeleteUser(int userId);
+    Task<bool> DeleteUserAsync(string userId);
 }

@@ -2,7 +2,7 @@ using TutorService.Application.Models;
 
 namespace TutorService.Application.Contracts;
 
-public interface IThemeModel
+public interface IThemeService
 {
     ThemeModel CreateTheme(string title, int difficulty);
 
