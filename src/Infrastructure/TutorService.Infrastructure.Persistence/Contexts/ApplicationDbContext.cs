@@ -9,7 +9,16 @@ public class ApplicationDbContext : DbContext
 {
     public ApplicationDbContext() { }
 
-    public ApplicationDbContext(DbContextOptions options) : base(options) { }
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+    {
+        Database.EnsureCreated();
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder
+            .EnableSensitiveDataLogging();
+    }
 
     public required DbSet<UserModel> Users { get; set; }
 
