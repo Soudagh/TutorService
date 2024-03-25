@@ -1,8 +1,10 @@
-namespace TutorService.Application.Models;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace TutorService.Application.Models.Models;
 
 public class TaskModel
 {
-    public int TaskId { get; set; }
+    public Guid TaskId { get; set; }
 
     public string Name { get; set; }
 
@@ -10,7 +12,7 @@ public class TaskModel
 
     public int Difficulty { get; set; }
 
-    public TaskModel(int taskId, string name, string description, int difficulty)
+    public TaskModel(Guid taskId, string name, string description, int difficulty)
     {
         TaskId = taskId;
         Name = name;

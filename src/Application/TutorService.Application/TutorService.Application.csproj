@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <ItemGroup>
+        <ProjectReference Include="..\..\Infrastructure\TutorService.Infrastructure.Persistence\TutorService.Infrastructure.Persistence.csproj" />
         <ProjectReference Include="..\TutorService.Application.Abstractions\TutorService.Application.Abstractions.csproj" />
         <ProjectReference Include="..\TutorService.Application.Contracts\TutorService.Application.Contracts.csproj" />
     </ItemGroup>

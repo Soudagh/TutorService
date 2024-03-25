@@ -1,5 +1,6 @@
 using Itmo.Dev.Platform.Postgres.Plugins;
 using Npgsql;
+using TutorService.Application.Models;
 
 namespace TutorService.Infrastructure.Persistence.Plugins;
 
@@ -9,5 +10,9 @@ namespace TutorService.Infrastructure.Persistence.Plugins;
 /// </summary>
 public class MappingPlugin : IDataSourcePlugin
 {
-    public void Configure(NpgsqlDataSourceBuilder builder) { }
+    public void Configure(NpgsqlDataSourceBuilder builder)
+    {
+        builder.MapEnum<Roles>();
+        builder.Build();
+    }
 }

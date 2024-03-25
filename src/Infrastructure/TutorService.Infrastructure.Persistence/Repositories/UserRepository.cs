@@ -1,36 +1,22 @@
 using TutorService.Application.Abstractions.Persistence.Repositories;
 using TutorService.Application.Models;
-using TutorService.Application.Models.Requests;
+using TutorService.Application.Models.Entities;
 using TutorService.Application.Models.Responses;
 using TutorService.Infrastructure.Persistence.Contexts;
+using TutorService.Infrastructure.Persistence.Mapping;
 
 namespace TutorService.Infrastructure.Persistence.Repositories;
 
-public class UserRepository : IUserRepository
+public class UserRepository(ApplicationDbContext context) : IUserRepository
 {
-    private readonly ApplicationDbContext _context;
-
-    public UserRepository(ApplicationDbContext context)
-    {
-        _context = context;
-    }
-
-    public async Task<bool> CreateUser(UserCreateRequest request)
+    public async Task<bool> CreateUser(UserModel userModel)
     {
         try
         {
-            var newUser = new UserModel(
-                userId: Guid.Empty,
-                fullName: request.FullName,
-                phone: request.Phone,
-                mail: request.Phone,
-                avatar: request.Avatar,
-                login: request.Login,
-                passwordHashed: request.PasswordHashed,
-                role: request.Role);
+            var user = UserMapper.ModelToEntity(userModel);
+            context.Add(entity: user);
+            await context.SaveChangesAsync();
 
-            _context.Users.Add(newUser);
-            await _context.SaveChangesAsync();
             return true;
         }
         catch (Exception)
@@ -43,7 +29,7 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            UserModel? user = await _context.Users.FindAsync(userId);
+            User? user = await context.user.FindAsync(new Guid(userId));
             if (user == null)
             {
                 return null!;
@@ -58,31 +44,32 @@ public class UserRepository : IUserRepository
                 user.Login,
                 user.Role);
         }
-        catch (Exception)
+        catch (Exception e)
         {
+            Console.WriteLine(e);
             return null!;
         }
     }
 
-    public async Task<bool> UpdateUser(string userId, UserUpdateRequest request)
+    public async Task<bool> UpdateUser(string userId, UserModel userModel)
     {
         try
         {
-            UserModel? user = await _context.Users.FindAsync(userId);
+            User? user = await context.user.FindAsync(new Guid(userId));
             if (user == null)
             {
                 return false;
             }
 
-            user.FullName = request.FullName;
-            user.Phone = request.Phone;
-            user.Mail = request.Mail;
-            user.Avatar = request.Avatar;
-            user.Login = request.Login;
-            user.PasswordHashed = request.PasswordHashed;
-            user.Role = request.Role;
+            user.FullName = userModel.FullName;
+            user.Phone = userModel.Phone;
+            user.Mail = userModel.Mail;
+            user.Avatar = userModel.Avatar;
+            user.Login = userModel.Login;
+            user.PasswordHashed = userModel.PasswordHashed;
+            user.Role = userModel.Role;
 
-            await _context.SaveChangesAsync();
+            await context.SaveChangesAsync();
             return true;
         }
         catch (Exception)
@@ -95,14 +82,14 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            UserModel? user = await _context.Users.FindAsync(userId);
+            User? user = await context.user.FindAsync(new Guid(userId));
             if (user == null)
             {
                 return false;
             }
 
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
+            context.user.Remove(user);
+            await context.SaveChangesAsync();
             return true;
         }
         catch (Exception)

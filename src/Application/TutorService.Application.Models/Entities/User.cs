@@ -1,6 +1,6 @@
-namespace TutorService.Application.Models;
+namespace TutorService.Application.Models.Entities;
 
-public class UserModel
+public class User
 {
     public Guid UserId { get; set; }
 
@@ -16,9 +16,9 @@ public class UserModel
 
     public string PasswordHashed { get; set; }
 
-    public RoleEnum Role { get; set; }
+    public Roles Role { get; set; }
 
-    public UserModel(
+    public User(
         Guid userId,
         string fullName,
         string phone,
@@ -26,7 +26,7 @@ public class UserModel
         string avatar,
         string login,
         string passwordHashed,
-        RoleEnum role)
+        Roles role)
     {
         UserId = userId;
         FullName = fullName;

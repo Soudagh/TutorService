@@ -6,7 +6,7 @@ using TutorService.Application.Models.Responses;
 namespace TutorService.Presentation.Http.Controllers;
 
 [ApiController]
-[Route("api/v1/tasks")]
+[Route("[controller]")]
 public class TaskController : ControllerBase
 {
     private readonly ITaskService _taskService;
@@ -16,7 +16,7 @@ public class TaskController : ControllerBase
         _taskService = taskService;
     }
 
-    [HttpPost("createtask")]
+    [HttpPost("task")]
     public async Task<IActionResult> CreateTask(TaskCreateRequest request)
     {
         try
@@ -26,10 +26,8 @@ public class TaskController : ControllerBase
             {
                 return Ok(new { body = true });
             }
-            else
-            {
-                return BadRequest(new { errors = new List<string>() { "Failed to create task." } });
-            }
+
+            return BadRequest(new { errors = new List<string>() { "Failed to create task." } });
         }
         catch (Exception ex)
         {
@@ -37,7 +35,7 @@ public class TaskController : ControllerBase
         }
     }
 
-    [HttpGet("gettask/{taskId}")]
+    [HttpGet("task/{taskId}")]
     public async Task<IActionResult> GetTask(string taskId)
     {
         try
@@ -47,10 +45,8 @@ public class TaskController : ControllerBase
             {
                 return Ok(task);
             }
-            else
-            {
-                return NotFound(new { errors = new List<string> { "Task not found." } });
-            }
+
+            return NotFound(new { errors = new List<string> { "Task not found." } });
         }
         catch (Exception ex)
         {
@@ -58,7 +54,7 @@ public class TaskController : ControllerBase
         }
     }
 
-    [HttpPut("updatetask/{taskId}")]
+    [HttpPut("task/{taskId}")]
     public async Task<IActionResult> UpdateTask(string taskId, [FromBody] TaskUpdateRequest request)
     {
         try
@@ -68,10 +64,8 @@ public class TaskController : ControllerBase
             {
                 return Ok(new { body = true });
             }
-            else
-            {
-                return BadRequest(new { errors = new List<string> { "Failed to update task." } });
-            }
+
+            return BadRequest(new { errors = new List<string> { "Failed to update task." } });
         }
         catch (Exception ex)
         {
@@ -79,7 +73,7 @@ public class TaskController : ControllerBase
         }
     }
 
-    [HttpDelete("deletetask/{taskId}")]
+    [HttpDelete("task/{taskId}")]
     public async Task<IActionResult> DeleteTask(string taskId)
     {
         try
@@ -89,10 +83,8 @@ public class TaskController : ControllerBase
             {
                 return Ok(new { body = true });
             }
-            else
-            {
-                return BadRequest(new { errors = new List<string> { "Failed to delete task." } });
-            }
+
+            return BadRequest(new { errors = new List<string> { "Failed to delete task." } });
         }
         catch (Exception ex)
         {

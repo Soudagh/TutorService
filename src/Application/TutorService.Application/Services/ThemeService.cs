@@ -1,5 +1,6 @@
 using TutorService.Application.Abstractions.Persistence.Repositories;
 using TutorService.Application.Contracts;
+using TutorService.Application.Models.Dtos;
 using TutorService.Application.Models.Requests;
 using TutorService.Application.Models.Responses;
 

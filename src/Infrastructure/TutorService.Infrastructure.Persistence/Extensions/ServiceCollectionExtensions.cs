@@ -17,18 +17,17 @@ public static class ServiceCollectionExtensions
         // TODO: add repositories
         collection.AddScoped<IPersistenceContext, PersistenceContext>();
         collection.AddScoped<IUserRepository, UserRepository>();
-        collection.AddScoped<ITaskRepository, TaskRepository>();
-        collection.AddScoped<IThemeRepository, ThemeRepository>();
-        collection.AddScoped<ITaskThemeRepository, TaskThemeRepository>();
 
+        // collection.AddScoped<ITaskRepository, TaskRepository>();
+        // collection.AddScoped<IThemeRepository, ThemeRepository>();
+        // collection.AddScoped<ITaskThemeRepository, TaskThemeRepository>();
         return collection;
     }
 
     private static IServiceCollection AddContext(this IServiceCollection collection, IConfiguration configuration)
     {
         collection.AddDbContext<ApplicationDbContext>(options =>
-                options.UseNpgsql("Host=localhost;Port=5433;Database=Tutor_Service;Username=postgres;Password=rfghjv2012"));
-
+                options.UseNpgsql("Host=ep-raspy-surf-a2g3tsj7.eu-central-1.aws.neon.tech;Port=5432;Database=tutor_service;Username=tutor_service_owner;Password=bkV8TOJM5lKf"));
         return collection;
     }
 }

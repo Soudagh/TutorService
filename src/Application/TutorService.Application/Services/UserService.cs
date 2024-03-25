@@ -1,6 +1,6 @@
 using TutorService.Application.Abstractions.Persistence.Repositories;
 using TutorService.Application.Contracts;
-using TutorService.Application.Models.Requests;
+using TutorService.Application.Models;
 using TutorService.Application.Models.Responses;
 
 namespace TutorService.Application.Services;
@@ -14,9 +14,9 @@ public class UserService : IUserService
         _userRepository = userRepository;
     }
 
-    public async Task<bool> CreateUserAsync(UserCreateRequest request)
+    public async Task<bool> CreateUserAsync(UserModel userModel)
     {
-        return await _userRepository.CreateUser(request);
+        return await _userRepository.CreateUser(userModel);
     }
 
     public async Task<UserResponse> GetUserAsync(string userId)
@@ -25,9 +25,9 @@ public class UserService : IUserService
         return new UserResponse(user.UserId, user.FullName, user.Phone, user.Mail, user.Avatar, user.Login, user.Role);
     }
 
-    public async Task<bool> UpdateUserAsync(string userId, UserUpdateRequest request)
+    public async Task<bool> UpdateUserAsync(string userId, UserModel userModel)
     {
-        return await _userRepository.UpdateUser(userId, request);
+        return await _userRepository.UpdateUser(userId, userModel);
     }
 
     public async Task<bool> DeleteUserAsync(string userId)

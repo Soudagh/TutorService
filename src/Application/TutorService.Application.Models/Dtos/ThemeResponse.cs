@@ -1,4 +1,4 @@
-namespace TutorService.Application.Models.Responses;
+namespace TutorService.Application.Models.Dtos;
 
 public record ThemeResponse
     (

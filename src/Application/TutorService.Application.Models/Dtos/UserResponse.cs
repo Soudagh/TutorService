@@ -7,4 +7,4 @@ public record UserResponse(
     string Mail,
     string Avatar,
     string Login,
-    RoleEnum Role);
+    Roles Role);

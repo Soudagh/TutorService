@@ -6,6 +6,11 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Application\TutorService.Application.Contracts\TutorService.Application.Contracts.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\TutorService.Infrastructure.Persistence\TutorService.Infrastructure.Persistence.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
     </ItemGroup>
 
 </Project>

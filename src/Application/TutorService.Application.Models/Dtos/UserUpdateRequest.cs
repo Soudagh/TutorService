@@ -1,11 +1,10 @@
-namespace TutorService.Application.Models.Requests;
+namespace TutorService.Application.Models.Dtos;
 
 public record UserUpdateRequest(
-    string UserId,
     string FullName,
     string Phone,
     string Mail,
     string Avatar,
     string Login,
     string PasswordHashed,
-    RoleEnum Role);
+    Roles Role);

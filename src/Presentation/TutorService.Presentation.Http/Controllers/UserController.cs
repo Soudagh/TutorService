@@ -1,12 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using TutorService.Application.Contracts;
-using TutorService.Application.Models.Requests;
+using TutorService.Application.Models.Dtos;
 using TutorService.Application.Models.Responses;
+using TutorService.Infrastructure.Persistence.Mapping;
 
 namespace TutorService.Presentation.Http.Controllers;
 
 [ApiController]
-[Route("api/v1/users")]
+[Route("[controller]/user")]
 public class UserController : ControllerBase
 {
     private readonly IUserService _userService;
@@ -16,12 +17,13 @@ public class UserController : ControllerBase
         _userService = userService;
     }
 
-    [HttpPost("createuser")]
-    public async Task<IActionResult> CreateUser(UserCreateRequest request)
+    [HttpPost("")]
+    public async Task<IActionResult> CreateUser([FromBody] UserCreateRequest request)
     {
         try
         {
-            bool success = await _userService.CreateUserAsync(request);
+            var userModel = UserMapper.UserCreateToModel(request);
+            bool success = await _userService.CreateUserAsync(userModel);
             if (success)
             {
                 return Ok(new { body = true });
@@ -35,7 +37,7 @@ public class UserController : ControllerBase
         }
     }
 
-    [HttpGet("getuser/{userId}")]
+    [HttpGet("{userId}")]
     public async Task<IActionResult> GetUserById(string userId)
     {
         try
@@ -54,12 +56,13 @@ public class UserController : ControllerBase
         }
     }
 
-    [HttpPut("updateuser/{userId}")]
+    [HttpPut("{userId}")]
     public async Task<IActionResult> UpdateUser(string userId, [FromBody] UserUpdateRequest request)
     {
         try
         {
-            bool success = await _userService.UpdateUserAsync(userId, request);
+            var userModel = UserMapper.UserUpdateToModel(request);
+            bool success = await _userService.UpdateUserAsync(userId, userModel);
             if (success)
             {
                 return Ok(new { body = true });
@@ -73,7 +76,7 @@ public class UserController : ControllerBase
         }
     }
 
-    [HttpDelete("deleteuser/{userId}")]
+    [HttpDelete("{userId}")]
     public async Task<IActionResult> DeleteUser(string userId)
     {
         try

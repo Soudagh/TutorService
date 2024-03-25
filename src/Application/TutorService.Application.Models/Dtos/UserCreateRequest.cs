@@ -1,4 +1,4 @@
-namespace TutorService.Application.Models.Requests;
+namespace TutorService.Application.Models.Dtos;
 
 public record UserCreateRequest(
     string FullName,
@@ -7,4 +7,4 @@ public record UserCreateRequest(
     string Avatar,
     string Login,
     string PasswordHashed,
-    RoleEnum Role);
+    string Role);
