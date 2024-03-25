@@ -17,6 +17,7 @@ public static class ServiceCollectionExtensions
         // TODO: add repositories
         collection.AddScoped<IPersistenceContext, PersistenceContext>();
         collection.AddScoped<IUserRepository, UserRepository>();
+
         // collection.AddScoped<ITaskRepository, TaskRepository>();
         // collection.AddScoped<IThemeRepository, ThemeRepository>();
         // collection.AddScoped<ITaskThemeRepository, TaskThemeRepository>();
