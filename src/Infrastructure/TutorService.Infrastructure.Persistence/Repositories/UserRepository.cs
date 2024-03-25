@@ -1,6 +1,6 @@
 using TutorService.Application.Abstractions.Persistence.Repositories;
-using TutorService.Application.Models;
 using TutorService.Application.Models.Entities;
+using TutorService.Application.Models.Models;
 using TutorService.Application.Models.Responses;
 using TutorService.Infrastructure.Persistence.Contexts;
 using TutorService.Infrastructure.Persistence.Mapping;
@@ -19,8 +19,9 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
 
             return true;
         }
-        catch (Exception)
+        catch (Exception e)
         {
+            Console.WriteLine(e);
             return false;
         }
     }
@@ -29,12 +30,13 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
     {
         try
         {
-            User? user = await context.user.FindAsync(new Guid(userId));
+            User? user = await context.Users.FindAsync(new Guid(userId));
             if (user == null)
             {
                 return null!;
             }
 
+            // User user = UserMapper.ModelToEntity(userModel);
             return new UserResponse(
                 user.UserId.ToString(),
                 user.FullName,
@@ -55,12 +57,13 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
     {
         try
         {
-            User? user = await context.user.FindAsync(new Guid(userId));
+            User? user = await context.Users.FindAsync(new Guid(userId));
             if (user == null)
             {
                 return false;
             }
 
+            // User user = UserMapper.ModelToEntity(foundUserModel);
             user.FullName = userModel.FullName;
             user.Phone = userModel.Phone;
             user.Mail = userModel.Mail;
@@ -82,13 +85,13 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
     {
         try
         {
-            User? user = await context.user.FindAsync(new Guid(userId));
+            User? user = await context.Users.FindAsync(new Guid(userId));
             if (user == null)
             {
                 return false;
             }
 
-            context.user.Remove(user);
+            context.Users.Remove(user);
             await context.SaveChangesAsync();
             return true;
         }

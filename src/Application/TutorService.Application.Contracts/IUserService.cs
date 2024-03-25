@@ -1,4 +1,4 @@
-using TutorService.Application.Models;
+using TutorService.Application.Models.Models;
 using TutorService.Application.Models.Responses;
 
 namespace TutorService.Application.Contracts;

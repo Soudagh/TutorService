@@ -8,10 +8,7 @@ public class TaskTheme
 
     public Guid ThemeId { get; set; }
 
-    public TaskTheme(Guid taskThemeId, Guid taskId, Guid themeId)
-    {
-        TaskThemeId = taskThemeId;
-        TaskId = taskId;
-        ThemeId = themeId;
-    }
+    public Exercise Task { get; set; } = null!;
+
+    public Theme Theme { get; set; } = null!;
 }

@@ -8,6 +8,7 @@ public class TaskConfiguration : IEntityTypeConfiguration<Exercise>
 {
     public void Configure(EntityTypeBuilder<Exercise> builder)
     {
+        builder.HasKey(task => task.TaskId).HasName("task_pkey");
         builder.Property(task => task.TaskId)
             .HasColumnName("task_id")
             .HasColumnType("character varying")
@@ -18,5 +19,6 @@ public class TaskConfiguration : IEntityTypeConfiguration<Exercise>
         builder.Property(task => task.Name)
             .HasColumnName("name")
             .HasColumnType("character varying");
+        builder.ToTable("task");
     }
 }

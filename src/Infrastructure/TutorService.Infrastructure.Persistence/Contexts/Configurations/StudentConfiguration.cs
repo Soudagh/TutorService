@@ -8,6 +8,7 @@ public class StudentConfiguration : IEntityTypeConfiguration<Student>
 {
     public void Configure(EntityTypeBuilder<Student> builder)
     {
+        builder.HasKey(student => student.StudentId).HasName("student_pkey");
         builder.Property(student => student.StudentId)
             .HasColumnName("student_id")
             .HasColumnType("character varying")
@@ -21,8 +22,19 @@ public class StudentConfiguration : IEntityTypeConfiguration<Student>
             .HasColumnType("character varying")
             .HasMaxLength(200);
         builder.Property(student => student.ThemeId)
-            .HasColumnName("tutor_id")
+            .HasColumnName("theme_id")
             .HasColumnType("character varying")
             .HasMaxLength(200);
+        builder
+            .HasOne(x => x.StudentUser)
+            .WithMany(x => x.Students)
+            .HasForeignKey(x => x.StudentUserId)
+            .HasConstraintName("student_user_fkey");
+        builder
+            .HasOne(x => x.Theme)
+            .WithMany(x => x.Students)
+            .HasForeignKey(x => x.ThemeId)
+            .HasConstraintName("theme_fkey");
+        builder.ToTable("student");
     }
 }

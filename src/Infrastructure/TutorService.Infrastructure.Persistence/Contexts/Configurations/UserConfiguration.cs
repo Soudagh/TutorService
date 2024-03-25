@@ -8,6 +8,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
     {
+        builder.HasKey(user => user.UserId).HasName("user_pkey");
         builder.Property(user => user.UserId)
             .HasColumnName("user_id")
             .HasColumnType("character varying")
@@ -39,5 +40,6 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(user => user.Role)
             .HasColumnName("role")
             .HasColumnType("roles");
+        builder.ToTable("user");
     }
 }

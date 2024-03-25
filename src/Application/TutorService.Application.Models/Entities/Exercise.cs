@@ -17,4 +17,6 @@ public class Exercise
         Description = description;
         Difficulty = difficulty;
     }
+
+    public virtual ICollection<TaskTheme> TaskThemes { get; private init; } = null!;
 }

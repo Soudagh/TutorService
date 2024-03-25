@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using TutorService.Application.Contracts;
 using TutorService.Application.Models.Dtos;
 using TutorService.Application.Models.Requests;
-using TutorService.Application.Models.Responses;
 
 namespace TutorService.Presentation.Http.Controllers;
 

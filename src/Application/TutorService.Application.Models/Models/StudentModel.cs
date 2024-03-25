@@ -1,4 +1,4 @@
-namespace TutorService.Application.Models;
+namespace TutorService.Application.Models.Models;
 
 public class StudentModel
 {
@@ -9,16 +9,4 @@ public class StudentModel
     public Guid TutorId { get; set; }
 
     public Guid ThemeId { get; set; }
-
-    public StudentModel(
-        Guid studentId,
-        Guid studentUserId,
-        Guid tutorId,
-        Guid themeId)
-    {
-        StudentId = studentId;
-        StudentUserId = studentUserId;
-        TutorId = tutorId;
-        ThemeId = themeId;
-    }
 }

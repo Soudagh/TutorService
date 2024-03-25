@@ -1,4 +1,3 @@
-using TutorService.Application.Models;
 using TutorService.Application.Models.Entities;
 using TutorService.Application.Models.Models;
 using TutorService.Application.Models.Requests;
@@ -9,41 +8,46 @@ public class TaskThemeMapper
 {
     public static TaskTheme ModelToEntity(TaskThemeModel taskThemeModel)
     {
-        var taskTheme = new TaskTheme(
-            taskThemeId: taskThemeModel.TaskThemeId,
-            themeId: taskThemeModel.ThemeId,
-            taskId: taskThemeModel.TaskId
-        );
+        var taskTheme = new TaskTheme
+        {
+            TaskThemeId = taskThemeModel.TaskThemeId,
+            ThemeId = taskThemeModel.ThemeId,
+            TaskId = taskThemeModel.TaskId,
+        };
         return taskTheme;
     }
 
     public static TaskThemeModel EntityToModel(TaskTheme taskTheme)
     {
-        var taskThemeModel = new TaskThemeModel(
-            taskThemeId: taskTheme.TaskThemeId,
-            taskId: taskTheme.TaskId,
-            themeId: taskTheme.ThemeId
-        );
+        var taskThemeModel = new TaskThemeModel
+        {
+            TaskThemeId = taskTheme.TaskThemeId,
+            TaskId = taskTheme.TaskId,
+            ThemeId = taskTheme.ThemeId,
+        };
+
         return taskThemeModel;
     }
 
     public static TaskThemeModel TaskThemeCreateToModel(TaskThemeCreateRequest request)
     {
-        var taskThemeModel = new TaskThemeModel(
-            taskThemeId: Guid.NewGuid(),
-            taskId: new Guid(request.TaskId),
-            themeId: new Guid(request.ThemeId)
-        );
+        var taskThemeModel = new TaskThemeModel
+        {
+            TaskThemeId = Guid.NewGuid(),
+            TaskId = new Guid(request.TaskId),
+            ThemeId = new Guid(request.ThemeId),
+        };
         return taskThemeModel;
     }
 
     public static TaskThemeModel TaskThemeUpdateToModel(TaskThemeUpdateRequest request)
     {
-        var taskThemeModel = new TaskThemeModel(
-            taskThemeId: Guid.Empty,
-            taskId: new Guid(request.TaskId),
-            themeId: new Guid(request.ThemeId)
-        );
+        var taskThemeModel = new TaskThemeModel
+        {
+            TaskThemeId = Guid.Empty,
+            TaskId = new Guid(request.TaskId),
+            ThemeId = new Guid(request.ThemeId),
+        };
         return taskThemeModel;
     }
 }

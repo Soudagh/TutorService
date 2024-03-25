@@ -1,3 +1,5 @@
+#pragma warning disable SA1300
+
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using TutorService.Application.Models;
@@ -12,18 +14,22 @@ public class ApplicationDbContext : DbContext
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-    required public DbSet<User> user { get; set; }
+    required public DbSet<User> Users { get; set; }
+
     required public DbSet<Exercise> Exercises { get; set; }
+
     required public DbSet<Student> Students { get; set; }
+
     required public DbSet<TaskTheme> TaskThemes { get; set; }
-    required public DbSet<ThemeModel> Themes { get; set; }
+
+    required public DbSet<Theme> Themes { get; set; }
 
     [Obsolete("Obsolete")]
     static ApplicationDbContext()
     {
         NpgsqlConnection.GlobalTypeMapper.MapEnum<Roles>();
     }
-    
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);

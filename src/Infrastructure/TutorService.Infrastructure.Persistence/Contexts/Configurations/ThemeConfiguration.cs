@@ -8,6 +8,7 @@ public class ThemeConfiguration : IEntityTypeConfiguration<Theme>
 {
     public void Configure(EntityTypeBuilder<Theme> builder)
     {
+        builder.HasKey(theme => theme.ThemeId).HasName("theme_pkey");
         builder.Property(theme => theme.ThemeId)
             .HasColumnName("theme_id")
             .HasColumnType("character varying");
@@ -18,5 +19,6 @@ public class ThemeConfiguration : IEntityTypeConfiguration<Theme>
         builder.Property(theme => theme.Difficulty)
             .HasColumnName("difficulty")
             .HasColumnType("integer");
+        builder.ToTable("theme");
     }
 }

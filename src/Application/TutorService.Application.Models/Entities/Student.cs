@@ -10,15 +10,9 @@ public class Student
 
     public Guid ThemeId { get; set; }
 
-    public Student(
-        Guid studentId,
-        Guid studentUserId,
-        Guid tutorId,
-        Guid themeId)
-    {
-        StudentId = studentId;
-        StudentUserId = studentUserId;
-        TutorId = tutorId;
-        ThemeId = themeId;
-    }
+    public User StudentUser { get; set; } = null!;
+
+    public User Tutor { get; set; } = null!;
+
+    public Theme Theme { get; set; } = null!;
 }

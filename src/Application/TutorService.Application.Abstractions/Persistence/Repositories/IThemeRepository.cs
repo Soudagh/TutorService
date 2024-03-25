@@ -1,6 +1,5 @@
 using TutorService.Application.Models.Dtos;
 using TutorService.Application.Models.Requests;
-using TutorService.Application.Models.Responses;
 
 namespace TutorService.Application.Abstractions.Persistence.Repositories;
 

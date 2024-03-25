@@ -14,4 +14,8 @@ public class Theme
         Title = title;
         Difficulty = difficulty;
     }
+
+    public virtual ICollection<TaskTheme> TaskThemes { get; private init; } = null!;
+
+    public virtual ICollection<Student> Students { get; private init; } = null!;
 }

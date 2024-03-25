@@ -7,11 +7,4 @@ public class TaskThemeModel
     public Guid TaskId { get; set; }
 
     public Guid ThemeId { get; set; }
-
-    public TaskThemeModel(Guid taskThemeId, Guid taskId, Guid themeId)
-    {
-        TaskThemeId = taskThemeId;
-        TaskId = taskId;
-        ThemeId = themeId;
-    }
 }
