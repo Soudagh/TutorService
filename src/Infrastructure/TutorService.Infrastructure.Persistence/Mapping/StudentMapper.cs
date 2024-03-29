@@ -32,7 +32,7 @@ public class StudentMapper
         return studentModel;
     }
 
-    public StudentModel StudentCreateToModel(StudentCreateRequest request)
+    public static StudentModel StudentCreateToModel(StudentCreateRequest request)
     {
         var studentModel = new StudentModel
         {
@@ -45,7 +45,7 @@ public class StudentMapper
         return studentModel;
     }
 
-    public StudentModel StudentUpdateToModel(StudentCreateRequest request)
+    public static StudentModel StudentUpdateToModel(StudentUpdateRequest request)
     {
         var studentModel = new StudentModel
         {

@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using TutorService.Application.Contracts;
 using TutorService.Application.Models.Dtos;
+using TutorService.Infrastructure.Persistence.Mapping;
 
 namespace TutorService.Presentation.Http.Controllers;
 
 [ApiController]
-[Route("api/v1/students")]
+[Route("[controller]/student")]
 public class StudentController : ControllerBase
 {
     private readonly IStudentService _studentService;
@@ -15,12 +16,13 @@ public class StudentController : ControllerBase
         _studentService = taskService;
     }
 
-    [HttpPost("createstudent")]
-    public async Task<IActionResult> CreateStudent(StudentCreateRequest request)
+    [HttpPost("")]
+    public async Task<IActionResult> CreateStudent([FromBody] StudentCreateRequest request)
     {
         try
         {
-            bool success = await _studentService.CreateStudentAsync(request);
+            var studentModel = StudentMapper.StudentCreateToModel(request);
+            bool success = await _studentService.CreateStudentAsync(studentModel);
             if (success)
             {
                 return Ok(new { body = true });
@@ -34,8 +36,8 @@ public class StudentController : ControllerBase
         }
     }
 
-    [HttpGet("getstudent")]
-    public async Task<IActionResult> GetStudent([FromQuery] string id)
+    [HttpGet("{studentId}")]
+    public async Task<IActionResult> GetStudent(string id)
     {
         try
         {
@@ -54,12 +56,13 @@ public class StudentController : ControllerBase
         }
     }
 
-    [HttpPut("updatestudent")]
+    [HttpPut("{studentId}")]
     public async Task<IActionResult> UpdateStudent(string id, [FromBody] StudentUpdateRequest request)
     {
         try
         {
-            bool success = await _studentService.UpdateStudentAsync(id, request);
+            var studentModel = StudentMapper.StudentUpdateToModel(request);
+            bool success = await _studentService.UpdateStudentAsync(id, studentModel);
 
             if (success)
             {
@@ -74,7 +77,7 @@ public class StudentController : ControllerBase
         }
     }
 
-    [HttpDelete("deletestudent")]
+    [HttpDelete("{studentId}")]
     public async Task<IActionResult> DeleteStudent(string id)
     {
         try
