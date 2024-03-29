@@ -29,7 +29,7 @@ public class ThemeMapper
         return themeModel;
     }
 
-    public ThemeModel ThemeCreateToModel(ThemeCreateRequest request)
+    public static ThemeModel ThemeCreateToModel(ThemeCreateRequest request)
     {
         var themeModel = new ThemeModel
         {
@@ -41,7 +41,7 @@ public class ThemeMapper
         return themeModel;
     }
 
-    public ThemeModel ThemeUpdateToModel(ThemeUpdateRequest request)
+    public static ThemeModel ThemeUpdateToModel(ThemeUpdateRequest request)
     {
         var themeModel = new ThemeModel
         {
