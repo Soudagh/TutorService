@@ -39,6 +39,4 @@ public class User
     }
 
     public virtual ICollection<Student> Students { get; private init; } = null!;
-
-    public virtual ICollection<Student> Tutors { get; private init; } = null!;
 }

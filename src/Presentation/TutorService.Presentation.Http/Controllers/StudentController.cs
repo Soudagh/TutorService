@@ -37,11 +37,11 @@ public class StudentController : ControllerBase
     }
 
     [HttpGet("{studentId}")]
-    public async Task<IActionResult> GetStudent(string id)
+    public async Task<IActionResult> GetStudent(string studentId)
     {
         try
         {
-            StudentResponse student = await _studentService.GetStudentAsync(id);
+            StudentResponse student = await _studentService.GetStudentAsync(studentId);
 
             if (student != null)
             {
@@ -57,12 +57,12 @@ public class StudentController : ControllerBase
     }
 
     [HttpPut("{studentId}")]
-    public async Task<IActionResult> UpdateStudent(string id, [FromBody] StudentUpdateRequest request)
+    public async Task<IActionResult> UpdateStudent(string studentId, [FromBody] StudentUpdateRequest request)
     {
         try
         {
             var studentModel = StudentMapper.StudentUpdateToModel(request);
-            bool success = await _studentService.UpdateStudentAsync(id, studentModel);
+            bool success = await _studentService.UpdateStudentAsync(studentId, studentModel);
 
             if (success)
             {
@@ -78,11 +78,11 @@ public class StudentController : ControllerBase
     }
 
     [HttpDelete("{studentId}")]
-    public async Task<IActionResult> DeleteStudent(string id)
+    public async Task<IActionResult> DeleteStudent(string studentId)
     {
         try
         {
-            bool success = await _studentService.DeleteStudentAsync(id);
+            bool success = await _studentService.DeleteStudentAsync(studentId);
 
             if (success)
             {

@@ -12,7 +12,5 @@ public class Student
 
     public User StudentUser { get; set; } = null!;
 
-    public User Tutor { get; set; } = null!;
-
     public Theme Theme { get; set; } = null!;
 }

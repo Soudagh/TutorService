@@ -14,7 +14,7 @@ public class ThemeConfiguration : IEntityTypeConfiguration<Theme>
             .HasColumnType("character varying");
         builder.Property(theme => theme.Title)
             .HasColumnName("title")
-            .HasColumnName("character varying")
+            .HasColumnType("character varying")
             .HasMaxLength(100);
         builder.Property(theme => theme.Difficulty)
             .HasColumnName("difficulty")
