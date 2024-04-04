@@ -36,7 +36,6 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
                 return null!;
             }
 
-            // User user = UserMapper.ModelToEntity(userModel);
             return new UserResponse(
                 user.UserId.ToString(),
                 user.FullName,

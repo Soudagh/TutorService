@@ -1,8 +1,9 @@
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using TutorService.Application.Contracts;
+using TutorService.Application.Events.Commands;
+using TutorService.Application.Events.Queries;
 using TutorService.Application.Models.Dtos;
 using TutorService.Application.Models.Responses;
-using TutorService.Infrastructure.Persistence.Mapping;
 
 namespace TutorService.Presentation.Http.Controllers;
 
@@ -10,11 +11,11 @@ namespace TutorService.Presentation.Http.Controllers;
 [Route("[controller]/user")]
 public class UserController : ControllerBase
 {
-    private readonly IUserService _userService;
+    private readonly IMediator _mediator;
 
-    public UserController(IUserService userService)
+    public UserController(IMediator mediator)
     {
-        _userService = userService;
+        _mediator = mediator;
     }
 
     [HttpPost("")]
@@ -22,8 +23,7 @@ public class UserController : ControllerBase
     {
         try
         {
-            var userModel = UserMapper.UserCreateToModel(request);
-            bool success = await _userService.CreateUserAsync(userModel);
+            bool success = await _mediator.Send(new CreateUserCommand { UserCreateRequest = request });
             if (success)
             {
                 return Ok(new { body = true });
@@ -42,7 +42,7 @@ public class UserController : ControllerBase
     {
         try
         {
-            UserResponse user = await _userService.GetUserAsync(userId);
+            UserResponse user = await _mediator.Send(new GetUserQuery { UserId = userId });
             if (user != null)
             {
                 return Ok(user);
@@ -61,8 +61,12 @@ public class UserController : ControllerBase
     {
         try
         {
-            var userModel = UserMapper.UserUpdateToModel(request);
-            bool success = await _userService.UpdateUserAsync(userId, userModel);
+            bool success = await _mediator.Send(new UpdateUserCommand
+            {
+                UserUpdateRequest = request,
+                UserId = userId,
+            });
+
             if (success)
             {
                 return Ok(new { body = true });
@@ -81,7 +85,7 @@ public class UserController : ControllerBase
     {
         try
         {
-            bool success = await _userService.DeleteUserAsync(userId);
+            bool success = await _mediator.Send(new DeleteUserCommand { UserId = userId });
             if (success)
             {
                 return Ok(new { body = true });

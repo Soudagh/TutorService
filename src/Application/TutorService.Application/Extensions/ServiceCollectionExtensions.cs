@@ -13,6 +13,7 @@ public static class ServiceCollectionExtensions
         collection.AddScoped<IThemeService, ThemeService>();
         collection.AddScoped<ITaskThemeService, TaskThemeService>();
         collection.AddScoped<IStudentService, StudentService>();
+        collection.AddMediatR(cf => cf.RegisterServicesFromAssembly(typeof(ServiceCollectionExtensions).Assembly));
 
         return collection;
     }

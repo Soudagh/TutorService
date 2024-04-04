@@ -2,6 +2,7 @@
     
     <ItemGroup>
         <ProjectReference Include="..\TutorService.Application.Models\TutorService.Application.Models.csproj" />
+        <PackageReference Include="MediatR" />
         <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
         <PackageReference Include="Itmo.Dev.Platform.Postgres" />
         <PackageReference Include="Itmo.Dev.Platform.Common" />
