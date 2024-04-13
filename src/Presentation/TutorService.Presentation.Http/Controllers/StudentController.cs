@@ -1,7 +1,8 @@
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using TutorService.Application.Contracts;
+using TutorService.Application.Events.Commands;
+using TutorService.Application.Events.Queries;
 using TutorService.Application.Models.Dtos;
-using TutorService.Infrastructure.Persistence.Mapping;
 
 namespace TutorService.Presentation.Http.Controllers;
 
@@ -9,11 +10,11 @@ namespace TutorService.Presentation.Http.Controllers;
 [Route("[controller]/student")]
 public class StudentController : ControllerBase
 {
-    private readonly IStudentService _studentService;
+    private readonly IMediator _mediator;
 
-    public StudentController(IStudentService taskService)
+    public StudentController(IMediator mediator)
     {
-        _studentService = taskService;
+        _mediator = mediator;
     }
 
     [HttpPost("")]
@@ -21,38 +22,36 @@ public class StudentController : ControllerBase
     {
         try
         {
-            var studentModel = StudentMapper.StudentCreateToModel(request);
-            bool success = await _studentService.CreateStudentAsync(studentModel);
+            bool success = await _mediator.Send(new CreateStudentCommand { StudentCreateRequest = request });
             if (success)
             {
                 return Ok(new { body = true });
             }
 
-            return BadRequest(new { errors = new List<string>() { "Failed to create student." } });
+            return BadRequest(new { errors = new List<string> { "Failed to create student." } });
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { errors = new List<string>() { ex.Message } });
+            return StatusCode(500, new { errors = new List<string> { ex.Message } });
         }
     }
 
     [HttpGet("{studentId}")]
-    public async Task<IActionResult> GetStudent(string studentId)
+    public async Task<IActionResult> GetStudentById(string studentId)
     {
         try
         {
-            StudentResponse student = await _studentService.GetStudentAsync(studentId);
-
+            StudentResponse student = await _mediator.Send(new GetStudentQuery { StudentId = studentId });
             if (student != null)
             {
                 return Ok(student);
             }
 
-            return NotFound(new { errors = new List<string>() { "Student not found." } });
+            return NotFound(new { errors = new List<string> { "Student not found." } });
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { errors = new List<string>() { ex.Message } });
+            return StatusCode(500, new { errors = new List<string> { ex.Message } });
         }
     }
 
@@ -61,19 +60,22 @@ public class StudentController : ControllerBase
     {
         try
         {
-            var studentModel = StudentMapper.StudentUpdateToModel(request);
-            bool success = await _studentService.UpdateStudentAsync(studentId, studentModel);
+            bool success = await _mediator.Send(new UpdateStudentCommand
+            {
+                StudentUpdateRequest = request,
+                StudentId = studentId,
+            });
 
             if (success)
             {
                 return Ok(new { body = true });
             }
 
-            return BadRequest(new { errors = new List<string>() { "Failed to update student." } });
+            return BadRequest(new { errors = new List<string> { "Failed to update student." } });
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { errors = new List<string>() { ex.Message } });
+            return StatusCode(500, new { errors = new List<string> { ex.Message } });
         }
     }
 
@@ -82,18 +84,17 @@ public class StudentController : ControllerBase
     {
         try
         {
-            bool success = await _studentService.DeleteStudentAsync(studentId);
-
+            bool success = await _mediator.Send(new DeleteStudentCommand { StudentId = studentId });
             if (success)
             {
                 return Ok(new { body = true });
             }
 
-            return BadRequest(new { errors = new List<string>() { "Failed to delete student." } });
+            return BadRequest(new { errors = new List<string> { "Failed to delete student." } });
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { errors = new List<string>() { ex.Message } });
+            return StatusCode(500, new { errors = new List<string> { ex.Message } });
         }
     }
 }
