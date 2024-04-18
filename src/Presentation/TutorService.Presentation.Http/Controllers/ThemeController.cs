@@ -1,8 +1,9 @@
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using TutorService.Application.Contracts;
+using TutorService.Application.Events.Commands;
+using TutorService.Application.Events.Queries;
 using TutorService.Application.Models.Dtos;
 using TutorService.Application.Models.Requests;
-using TutorService.Infrastructure.Persistence.Mapping;
 
 namespace TutorService.Presentation.Http.Controllers;
 
@@ -10,11 +11,11 @@ namespace TutorService.Presentation.Http.Controllers;
 [Route("[controller]/theme")]
 public class ThemeController : ControllerBase
 {
-    private readonly IThemeService _themeService;
+    private readonly IMediator _mediator;
 
-    public ThemeController(IThemeService themeService)
+    public ThemeController(IMediator mediator)
     {
-        _themeService = themeService;
+        _mediator = mediator;
     }
 
     [HttpPost("")]
@@ -22,8 +23,7 @@ public class ThemeController : ControllerBase
     {
         try
         {
-            var themeModel = ThemeMapper.ThemeCreateToModel(request);
-            bool success = await _themeService.CreateThemeAsync(themeModel);
+            bool success = await _mediator.Send(new CreateThemeCommand { ThemeCreateRequest = request });
             if (success)
             {
                 return Ok(new { body = true });
@@ -42,7 +42,7 @@ public class ThemeController : ControllerBase
     {
         try
         {
-            ThemeResponse theme = await _themeService.GetThemeAsync(themeId);
+            ThemeResponse theme = await _mediator.Send(new GetThemeQuery { ThemeId = themeId });
             if (theme != null)
             {
                 return Ok(theme);
@@ -61,8 +61,12 @@ public class ThemeController : ControllerBase
     {
         try
         {
-            var themeModel = ThemeMapper.ThemeUpdateToModel(request);
-            bool success = await _themeService.UpdateThemeAsync(themeId, themeModel);
+            bool success = await _mediator.Send(new UpdateThemeCommand
+            {
+                ThemeUpdateRequest = request,
+                ThemeId = themeId,
+            });
+
             if (success)
             {
                 return Ok(new { body = true });
@@ -81,7 +85,7 @@ public class ThemeController : ControllerBase
     {
         try
         {
-            bool success = await _themeService.DeleteThemeAsync(themeId);
+            bool success = await _mediator.Send(new DeleteThemeCommand { ThemeId = themeId });
             if (success)
             {
                 return Ok(new { body = true });
