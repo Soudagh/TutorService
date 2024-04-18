@@ -1,5 +1,6 @@
 using TutorService.Application.Abstractions.Persistence.Repositories;
 using TutorService.Application.Contracts;
+using TutorService.Application.Models.Models;
 using TutorService.Application.Models.Requests;
 using TutorService.Application.Models.Responses;
 
@@ -14,7 +15,7 @@ public class TaskService : ITaskService
         _taskRepository = taskRepository;
     }
 
-    public async Task<bool> CreateTaskAsync(TaskCreateRequest request)
+    public async Task<bool> CreateTaskAsync(TaskModel request)
     {
         return await _taskRepository.CreateTask(request);
     }
@@ -25,7 +26,7 @@ public class TaskService : ITaskService
         return new TaskResponse(task.TaskId, task.Name, task.Description, task.Difficulty);
     }
 
-    public async Task<bool> UpdateTaskAsync(string id, TaskUpdateRequest request)
+    public async Task<bool> UpdateTaskAsync(string id, TaskModel request)
     {
         return await _taskRepository.UpdateTask(id, request);
     }

@@ -1,5 +1,6 @@
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using TutorService.Application.Contracts;
+using TutorService.Application.Events.Commands;
 using TutorService.Application.Models.Requests;
 using TutorService.Application.Models.Responses;
 
@@ -9,11 +10,11 @@ namespace TutorService.Presentation.Http.Controllers;
 [Route("[controller]")]
 public class TaskController : ControllerBase
 {
-    private readonly ITaskService _taskService;
+    private readonly IMediator _mediator;
 
-    public TaskController(ITaskService taskService)
+    public TaskController(IMediator mediator)
     {
-        _taskService = taskService;
+        _mediator = mediator;
     }
 
     [HttpPost("task")]
@@ -21,7 +22,7 @@ public class TaskController : ControllerBase
     {
         try
         {
-            bool success = await _taskService.CreateTaskAsync(request);
+            bool success = await _mediator.Send(new TaskCreateCommand { TaskCreateRequest = request });
             if (success)
             {
                 return Ok(new { body = true });
